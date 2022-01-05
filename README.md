@@ -1,4 +1,8 @@
-### ![vue2 ele重写](https://github.com/bailicangdu/vue2-elm)
+### [vue2 ele重写](https://github.com/bailicangdu/vue2-elm)
+
+### 技术栈
+vue3 + vuex + vue-router + webpack5 + ES6/7 + fetch + sass + flex + svg
+
 #### 初始化项目步骤
 1. 初始化
 ```shell
@@ -42,3 +46,7 @@ npx webpack --config webpack.config.js
 ```
 9. package.json 添加build命令
 > 使用 npm scripts，我们可以像使用 npx 那样通过模块名引用本地安装的 npm packages。
+10. defer和async
+> defer 属性的脚本会阻止 DOMContentLoaded 事件，直到脚本被加载并且解析完成。
+>
+> async 属性，那么普通脚本会被并行请求，并尽快解析和执行。

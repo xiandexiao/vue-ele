@@ -5,14 +5,28 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=online node build/dev-server.js",
-    "local": "cross-env NODE_ENV=local node build/dev-server.js",
+    "local": "cross-env NODE_ENV=development node build/dev-server.js",
     "build": "webpack"
   },
   "devDependencies": {
+    "connect-history-api-fallback": "^1.6.0",
+    "cross-env": "^7.0.3",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.17.2",
+    "html-webpack-plugin": "^5.5.0",
+    "opn": "^6.0.0",
     "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-middleware": "^5.3.0",
+    "webpack-dev-server": "^4.7.2",
+    "webpack-hot-middleware": "^2.25.1",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
     "lodash": "^4.17.21"
-  }
+  },
+  "browserslist": [
+    "Android >= 4.4",
+    "iOS >= 8"
+  ]
 }
