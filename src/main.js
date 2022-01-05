@@ -1,12 +1,24 @@
-import _ from 'lodash';
+import Vue from 'vue';
+import VueRouter from 'vue-router'
+import routes from './router/router'
 
-function component() {
-  const element = document.createElement('div');
+Vue.use(VueRouter)
+const router = new VueRouter({
+  routes,
+  mode: "hash",
+  strict: process.env.NODE_ENV !== 'production',
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (from.meta.keepAlive) {
+        from.meta.savedPosition = document.body.scrollTop;
+      }
+      return { x: 0, y: to.meta.savedPosition || 0 }
+    }
+  }
+})
 
-  // lodash（目前通过一个 script 引入）对于执行这一行是必需的
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
-}
-
-document.body.appendChild(component());
+new Vue({
+  router
+}).$mount('#app')

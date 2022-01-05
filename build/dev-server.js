@@ -2,7 +2,7 @@ const config = require('../config')
 const path = require('path')
 const express = require('express');
 const webpack = require('webpack');
-const opn = require('opn');
+const open = require('open');
 // const proxyMiddleware = require('http-proxy-middleware')
 // // 把 webpack 处理过的文件发送到一个 server
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -27,30 +27,21 @@ let compiler = webpack(webpackConfig)
 server.use(
   webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    // stats: {
-    //   // output in the different colors.
-    //   colors: true,
-    //   //  whether to add information about the chunk
-    //   chunks: false
-    // }
+    stats: {
+      // output in the different colors.
+      colors: true,
+      //  whether to add information about the chunk
+      chunks: false
+    }
   })
 );
 
 server.use(history());
 let hotMiddleware = hot(compiler);
-// force page reload when html-webpack-plugin template changes
-// compiler.plugin('compilation', function(compilation) {
-//   compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
-//     hotMiddleware.publish({
-//       action: 'reload'
-//     })
-//     cb()
-//   })
-// });
 server.use(hotMiddleware)
 // serve pure static assets
 let staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
-//server.use(staticPath, express.static('./static'))
+server.use(staticPath, express.static('./static'))
 module.exports = server.listen(port, function(err) {
   if (err) {
     console.log(err)
@@ -61,6 +52,6 @@ module.exports = server.listen(port, function(err) {
 
   // when env is testing, don't need open it
   if (process.env.NODE_ENV !== 'testing') {
-    opn(uri)
+    open(uri)
   }
 });

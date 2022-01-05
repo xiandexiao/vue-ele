@@ -50,3 +50,16 @@ npx webpack --config webpack.config.js
 > defer 属性的脚本会阻止 DOMContentLoaded 事件，直到脚本被加载并且解析完成。
 >
 > async 属性，那么普通脚本会被并行请求，并尽快解析和执行。
+11. 安装babel
+```shell
+yarn add  @babel/core @babel/preset-env babel-loader --dev
+```
+12. 安装vue,vue-loader
+```shell
+yarn add vue vue-router
+yarn add vue-loader vue-template-compiler --dev
+```
+> webpack配置VueLoaderPlugin
+>
+> webpack配置vue别名，因为是预编译的
+13. babel配置
