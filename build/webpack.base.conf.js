@@ -90,6 +90,15 @@ module.exports = {
         use: ['babel-loader'],
         include: projectRoot,
         exclude: /node_modules/
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', {
+          loader: 'less-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
       }
     ]
   }

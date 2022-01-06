@@ -62,4 +62,7 @@ yarn add vue-loader vue-template-compiler --dev
 > webpack配置VueLoaderPlugin
 >
 > webpack配置vue别名，因为是预编译的
-13. babel配置
+13. 安装解析less的插件
+```shell
+yarn add less less-loader --dev
+```
