@@ -1,7 +1,7 @@
 ### [vue2 ele重写](https://github.com/bailicangdu/vue2-elm)
 
 ### 技术栈
-vue3 + vuex + vue-router + webpack5 + ES6/7 + fetch + sass + flex + svg
+vue2 + vuex + vue-router + webpack5 + ES6/7 + fetch + less + flex + svg
 
 #### 初始化项目步骤
 1. 初始化
@@ -66,3 +66,4 @@ yarn add vue-loader vue-template-compiler --dev
 ```shell
 yarn add less less-loader --dev
 ```
+14. 引入rem.js，实现字体缩放

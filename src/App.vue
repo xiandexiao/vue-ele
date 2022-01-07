@@ -1,6 +1,9 @@
 <template>
   <div>
+    <!--  给任何元素和组件添加进入/离开过渡  -->
+    <!--  name是过渡css的前缀  -->
     <transition name="router-fade" mode="out-in">
+      <!-- 失活的组件将会被缓存！保留组件状态或避免重新渲染-->
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
       </keep-alive>
@@ -8,7 +11,6 @@
     <transition name="router-fade" mode="out-in">
       <router-view v-if="!$route.meta.keepAlive"></router-view>
     </transition>
-    <p>test</p>
     <svg-icon></svg-icon>
   </div>
 </template>

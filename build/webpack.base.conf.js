@@ -86,10 +86,17 @@ module.exports = {
         use: ['vue-loader']
       },
       {
-        test: /\.js$/,
-        use: ['babel-loader'],
+        test: /\.m?js$/,
         include: projectRoot,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          // 使用 options 属性，来向 loader 传递
+          options: {
+            // 不用写.babelrc配置文件
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.less$/,
