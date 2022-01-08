@@ -1,6 +1,6 @@
 <template>
   <div>
-    <head-top>
+    <head-top  sign-in-up='home'>
       <template v-slot:logo>
         <span class="head-logo" @click="reload">ele.me</span>
       </template>

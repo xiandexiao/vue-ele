@@ -1,6 +1,7 @@
 import App from '../App'
 
-const home = r => require.ensure([], () => r(require('../page/home/Home')), 'home')
+const home = r => require.ensure([], () => r(require('../page/home/Home')), 'home');
+const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 export default [{
   path: '/',
   component: App, //顶层路由，对应index.html
@@ -15,5 +16,10 @@ export default [{
       path: '/home',
       component: home
     },
+    // 登录
+    {
+      path: '/login',
+      component: login
+    }
   ]
 }]

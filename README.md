@@ -67,3 +67,10 @@ yarn add vue-loader vue-template-compiler --dev
 yarn add less less-loader --dev
 ```
 14. 引入rem.js，实现字体缩放
+15. Babel7 async函数解析异常处理
+* 安装插件
+```shell
+yarn add -D @babel/plugin-transform-runtime
+```
+* .babelrc 配置插件
+> "plugins": ["@babel/transform-runtime"]
