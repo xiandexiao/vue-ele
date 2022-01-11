@@ -7,6 +7,7 @@ Vue.use(Vuex);
 const state = {
   userInfo: null, //用户信息
 };
+console.log(mutations)
 export default new Vuex.Store({
   state,
   actions,

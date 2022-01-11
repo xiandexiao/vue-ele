@@ -37,10 +37,8 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 
     try {
       const response = await fetch(url, requestConfig);
-      // 增加错误处理：无响应
-      if (!response.ok) {
-        throw new Error('Network response was not OK');
-      }
+      // 处理代理无响应的情况
+      if (!response.ok) return null;
       return response.json()
     } catch (error) {
       throw new Error(error)

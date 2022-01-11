@@ -1,4 +1,5 @@
-import { GET_USERINFO } from './mutation-types.js';
+import {GET_USERINFO, RECORD_USERINFO} from './mutation-types.js';
+import {setStore} from '../config/mUtils'
 
 export default {
   //获取用户信息存入vuex
@@ -15,4 +16,9 @@ export default {
       state.userInfo = null;
     }
   },
+  [RECORD_USERINFO](state, info) {
+    state.userInfo = info;
+    state.login = true;
+    setStore('user_id', info.user_id);
+  }
 }

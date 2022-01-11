@@ -19,6 +19,7 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.17.2",
     "html-webpack-plugin": "^5.5.0",
+    "http-proxy-middleware": "^2.0.1",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "open": "^8.4.0",

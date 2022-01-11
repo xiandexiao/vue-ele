@@ -94,7 +94,8 @@ module.exports = {
           // 使用 options 属性，来向 loader 传递
           options: {
             // 不用写.babelrc配置文件
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: ["@babel/transform-runtime"]
           }
         }
       },

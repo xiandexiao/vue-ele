@@ -8,7 +8,7 @@ import store from './store/'
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes,
-  mode: "hash",
+  mode: 'history',
   strict: process.env.NODE_ENV !== 'production',
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {

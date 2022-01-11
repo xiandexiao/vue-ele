@@ -2,11 +2,11 @@
   <header id="head-top">
     <slot name="logo"></slot>
     <slot name="search"></slot>
-    <section class="head-go-back" v-if="goBack" @click="$router.go(-1)">
+    <a class="head-go-back" v-if="goBack" @click="$router.go(-1)" href="javascript: void 0;">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="12,18 4,9 12,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
+        <polyline points="24,30 4,15 24,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
       </svg>
-    </section>
+    </a>
     <router-link :to="userInfo ? '/profile' : '/login'" v-if='signInUp' class="head-login">
       <svg class="user-avatar" v-if="userInfo">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     //获取用户信息
-    this.getUserInfo();
+    if (!this.userInfo) this.getUserInfo();
   },
   props: ['signInUp', 'goBack', 'headTitle'],
   computed: {
@@ -58,9 +58,8 @@ export default {
   .wh(100%, 1.95rem);
 }
 .head-go-back{
-  .wh(0.6rem, 1rem);
-  line-height: 2.2rem;
-  margin-left: .4rem;
+  width: 0.7rem;
+  height: 1rem;
 }
 .head-login{
   .sc(0.7rem, #fff);
@@ -77,5 +76,6 @@ export default {
     text-align: center;
     font-weight: bold;
   }
+  flex: 1;
 }
 </style>

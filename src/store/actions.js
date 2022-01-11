@@ -3,9 +3,9 @@ import { GET_USERINFO } from './mutation-types.js'
 
 export default {
   // context解构
-  async getUserInfo({ commit, state }) {
+  async getUserInfo({ commit }) {
     let res = await getUser();
-    console.log(`res ${res}`)
+    console.log(`userInfo: `, res)
     commit(GET_USERINFO, res)
   }
 }
