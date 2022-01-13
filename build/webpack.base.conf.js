@@ -33,7 +33,7 @@ module.exports = {
     alias: {
       // 末尾添加 $，以表示精准匹配 配置别名
       'vue$': 'vue/dist/vue.js',
-      // 'src': path.resolve(__dirname, '../src'),
+      'src': path.resolve(__dirname, '../src'),
       // 'assets': path.resolve(__dirname, '../src/assets'),
       // 'components': path.resolve(__dirname, '../src/components')
     }

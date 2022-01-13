@@ -4,6 +4,8 @@ import {setStore} from '../config/mUtils'
 export default {
   //获取用户信息存入vuex
   [GET_USERINFO](state, info) {
+    console.log(info)
+    console.log(state.userInfo)
     if (state.userInfo && (state.userInfo.username !== info.username)) {
       return;
     }
@@ -16,7 +18,7 @@ export default {
       state.userInfo = null;
     }
   },
-  [RECORD_USERINFO](state, info) {
+  RECORD_USERINFO(state, info) {
     state.userInfo = info;
     state.login = true;
     setStore('user_id', info.user_id);

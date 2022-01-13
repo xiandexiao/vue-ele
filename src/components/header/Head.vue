@@ -8,10 +8,10 @@
       </svg>
     </a>
     <router-link :to="userInfo ? '/profile' : '/login'" v-if='signInUp' class="head-login">
-      <svg class="user-avatar" v-if="userInfo">
+      <svg v-if="userInfo" class="user-avatar">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
       </svg>
-      <span class="login-span" v-else>登录|注册</span>
+      <span v-else class="login-span">登录|注册</span>
     </router-link>
     <section class="title-head ellipsis" v-if="headTitle">
       <span class="title-text">{{ headTitle }}</span>
@@ -65,6 +65,10 @@ export default {
   .sc(0.7rem, #fff);
   .login-span{
     color: #fff;
+  }
+  .user-avatar{
+    fill: #fff;
+    .wh(.8rem, .8rem);
   }
 }
 .title-head{

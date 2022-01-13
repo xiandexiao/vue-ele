@@ -1,12 +1,12 @@
 <template>
   <div class="login-container">
     <head-top :head-title="loginWay ? '登录' : '密码登录'" goBack="true"></head-top>
-    <form class="login-form">
+    <form class="login-form" @keyup.enter.exact="mobileLogin">
       <section class="input-container">
         <input type="text" placeholder="账号" v-model.lazy="userAccount">
       </section>
       <section class="input-container">
-        <input v-if="!showPassword" type="password" placeholder="密码"  v-model="passWord">
+        <input v-if="!showPassword" type="password" placeholder="密码"  v-model="passWord" autocomplete="new-password">
         <input v-else type="text" placeholder="密码"  v-model="passWord">
         <div class="button-switch" :class="{'change-to-text': showPassword}">
           <div class="button-circle" :class="{'trans-to-right': showPassword}" @click="changePassWordType"></div>
@@ -85,7 +85,7 @@ export default {
     getCaptchaCode(){
       getCaptCode().then(
         res => {this.captchaCodeImg = res.code;}
-      ).catch(e => {
+      ).catch(() => {
         this.showAlert = true;
         this.alertText = '获取验证码失败';
       });

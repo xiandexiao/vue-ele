@@ -6,7 +6,7 @@ const open = require('open');
 // // 把 webpack 处理过的文件发送到一个 server
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('./webpack.dev.conf');
-const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 // 解决单击刷新或输入地址的方式找不到页面的问题
 const history = require('connect-history-api-fallback');
 const  hot = require('webpack-hot-middleware');
