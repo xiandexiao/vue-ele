@@ -2,7 +2,7 @@
   "name": "vue-ele",
   "version": "1.0.0",
   "private": true,
-  "license": "MIT",
+  "license": "GPL",
   "scripts": {
     "dev": "cross-env NODE_ENV=online node build/dev-server.js",
     "local": "cross-env NODE_ENV=development node build/dev-server.js",
