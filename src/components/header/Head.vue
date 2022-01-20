@@ -16,6 +16,7 @@
     <section class="title-head ellipsis" v-if="headTitle">
       <span class="title-text">{{ headTitle }}</span>
     </section>
+    <slot name="changeCity"></slot>
   </header>
 </template>
 
@@ -55,7 +56,7 @@ export default {
   left: 0;
   top: 0;
   padding: 0 0.2rem;
-  .wh(100%, 1.95rem);
+  .wh(100%, @headHeight);
 }
 .head-go-back{
   width: 0.7rem;
