@@ -3,6 +3,7 @@ import App from '../App'
 const Home = () => import(/* webpackChunkName: "chunk" */ '../page/home/Home')
 const Login = () => import(/* webpackChunkName: "chunk" */ '../page/login/login')
 const Profile = () => import(/* webpackChunkName: "chunk" */ '../page/profile/Profile')
+const City = () => import(/* webpackChunkName: "chunk" */ '../page/city/City')
 export default [{
   path: '/',
   component: App, //顶层路由，对应index.html
@@ -25,6 +26,10 @@ export default [{
     {
       path: '/profile',
       component: Profile
+    },
+    {
+      path: '/city/:cityID',
+      component: City
     }
   ]
 }]
