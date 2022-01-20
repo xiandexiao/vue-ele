@@ -24,3 +24,13 @@ export const hotcity = () => fetch('/v1/cities', {
 export const groupcity = () => fetch('/v1/cities', {
   type: 'group'
 });
+
+// 通过ID获取城市
+export const getCityByID = cityID => fetch('/v1/cities/' + cityID)
+
+// 获取搜索地址
+export const searchShop = (cityID, value) => fetch('/v1/pois', {
+  type: 'search',
+  city_id: cityID,
+  keyword: value
+});
