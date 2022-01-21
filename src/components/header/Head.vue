@@ -7,16 +7,17 @@
         <polyline points="24,30 4,15 24,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
       </svg>
     </a>
-    <router-link :to="userInfo ? '/profile' : '/login'" v-if='signInUp' class="head-login">
+    <router-link :to="userInfo ? '/profile' : '/login'" v-if="signInUp" class="head-login">
       <svg v-if="userInfo" class="user-avatar">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
       </svg>
       <span v-else class="login-span">登录|注册</span>
     </router-link>
-    <section class="title-head ellipsis" v-if="headTitle">
-      <span class="title-text">{{ headTitle }}</span>
-    </section>
+    <p class="title-head ellipsis" v-if="headTitle">
+      {{ headTitle }}
+    </p>
     <slot name="changeCity"></slot>
+    <slot name="home"></slot>
   </header>
 </template>
 
@@ -74,13 +75,8 @@ export default {
 }
 .title-head{
   width: 50%;
-  color: #fff;
+  .sc(0.8rem, #fff);
   text-align: center;
-  .title-text {
-    .sc(0.8rem, #fff);
-    text-align: center;
-    font-weight: bold;
-  }
-  flex: 1;
+  font-weight: bold;
 }
 </style>
