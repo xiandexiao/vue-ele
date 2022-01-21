@@ -34,3 +34,6 @@ export const searchShop = (cityID, value) => fetch('/v1/pois', {
   city_id: cityID,
   keyword: value
 });
+
+// 根据经纬度获取地址
+export const getAddressByGeo = geohash => fetch('/v2/pois/' + geohash);
