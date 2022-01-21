@@ -14,12 +14,15 @@
         <button type="button" @click="searchShop">查找</button>
       </div>
     </form>
+    <header v-show="historyTitle" class="history-title">搜索历史</header>
     <ul class="shop-con">
-      <li v-for="(item, index) in placeList" :key="index">
+      <li v-for="(item, index) in placeList" :key="index" @click="nextPage(index, item.geohash)">
         <h4 class="ellipsis">{{item.name}}</h4>
         <p class="ellipsis">{{item.address}}</p>
       </li>
     </ul>
+    <footer v-show="historyTitle&&placeList.length" class="clear-all" @click="clearPlaceList">清空所有</footer>
+    <p class="search-none" v-if="placeNone">很抱歉！无搜索结果</p>
   </div>
 </template>
 
@@ -34,7 +37,9 @@ export default {
       cityName: '',
       cityID: '',
       searchText: '',
-      placeList: []
+      historyTitle: false,
+      placeList: [],
+      placeNone: false
     };
   },
   components: {
@@ -44,12 +49,54 @@ export default {
     searchShop (e) {
       if (this.searchText) {
         searchShop(this.cityID, this.searchText).then(res => {
-          // this.historytitle = false;
+          this.historyTitle = false;
           this.placeList = res;
-          // this.placeNone = res.length? false : true;
+          this.placeNone = !res.length;
         })
       }
       e.preventDefault();
+    },
+    // 展示浏览地址记录，最多5条，超过删除
+    showHistory() {
+      let placeList = localStorage.getItem('placeList');
+      if (placeList) {
+        placeList = JSON.parse(placeList);
+        this.placeList = placeList;
+        this.historyTitle = true;
+      } else {
+        this.placeList = [];
+      }
+    },
+    // 储存搜索历史，从后往前遍历，留下最新5条
+    // 跳转到详情页面
+    nextPage(index, geohash) {
+      let oldPlaceList = localStorage.getItem('placeList');
+      let currentItem = this.placeList[index];
+      if (oldPlaceList) {
+        oldPlaceList = JSON.parse(oldPlaceList);
+        oldPlaceList = oldPlaceList.filter((item, itemIndex) => {
+          if (itemIndex > 4) {
+            return false;
+          }
+          return item.geohash !== currentItem.geohash;
+        });
+      } else {
+        oldPlaceList = [];
+      }
+      if (oldPlaceList.length === 5) {
+        oldPlaceList.pop();
+      }
+      oldPlaceList.unshift(currentItem);
+      localStorage.setItem('placeList', JSON.stringify(oldPlaceList));
+
+      this.$router.push({
+        path:'/msite',
+        query:{geohash: currentItem.geohash}
+      });
+    },
+    clearPlaceList() {
+      localStorage.setItem('placeList', '');
+      this.showHistory();
     }
   },
   mounted(){
@@ -57,8 +104,8 @@ export default {
     //获取当前城市名字
     getCityByID(this.cityID).then(res => {
       this.cityName = res.name;
-    })
-    //this.initData();
+    });
+    this.showHistory();
   },
 }
 </script>
@@ -107,6 +154,13 @@ padding-top: @headHeight;
     }
   }
 
+  .history-title {
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: .47rem;
+    padding: 0 .4rem;
+  }
+
   .shop-con {
     background-color: #fff;
     border-top: 1px solid #e4e4e4;
@@ -130,6 +184,22 @@ padding-top: @headHeight;
          color: #999;
        }
      }
+  }
+
+  .clear-all {
+    font-size: .7rem;
+    color: #666;
+    text-align: center;
+    line-height: 2rem;
+    background-color: #fff;
+  }
+
+  .search-none {
+    border-top: 1px solid #e4e4e4;
+    color: #333;
+    background-color: #fff;
+    padding: .5rem;
+    font-size: .65rem;
   }
 }
 </style>
